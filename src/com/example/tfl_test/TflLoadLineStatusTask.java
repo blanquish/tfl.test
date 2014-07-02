@@ -4,7 +4,6 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.example.tfl_test.model.ArrayOfLineStatus;
 import org.apache.http.HttpEntity;
@@ -16,8 +15,6 @@ import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
 
 public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
 
@@ -87,30 +84,11 @@ public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
                 Serializer serializer = new Persister();
                 ArrayOfLineStatus lineStatus = serializer.read(ArrayOfLineStatus.class, tflXML);
 
-                List<Entry> entries2 = Arrays.asList(
-                        new Entry("title1", "summary1", "link1"),
-                        new Entry("title2", "summary2", "link2"),
-                        new Entry("title3", "summary3", "link3"),
-                        new Entry("title4", "summary4", "link4"),
-                        new Entry("title5", "summary5", "link5"));
-
-                listView.setAdapter(new ArrayAdapter<Entry>(tflTestActivity, android.R.layout.simple_list_item_1, entries2));
+                listView.setAdapter(new TubeLineStatusAdapter(tflTestActivity, android.R.layout.simple_list_item_1, lineStatus.getLineStatusList()));
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    public class Entry {
-        public final String name;
-        public final String statusDescription;
-        public final String statusCode;
-
-        public Entry(String name, String statusCode, String statusDescription) {
-            this.name = name;
-            this.statusCode = statusCode;
-            this.statusDescription = statusDescription;
         }
     }
 
