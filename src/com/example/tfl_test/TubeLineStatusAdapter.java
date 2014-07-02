@@ -47,23 +47,12 @@ public class TubeLineStatusAdapter  extends ArrayAdapter<LineStatus> {
 
         TextView tubeLineName = (TextView)convertView.findViewById(R.id.tubeLineName);
         tubeLineName.setText(lineStatus.getLine().getName());
+        tubeLineName.setBackgroundColor(0x894e24);
+        tubeLineName.invalidate();
 
         TextView tubeLineStatus = (TextView)convertView.findViewById(R.id.tubeLineStatus);
         tubeLineStatus.setText(lineStatus.getStatus().getDescription());
-
-//        tubeLineName.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + video.getYoutubeId()));
-////                getContext().startActivity(intent);
-//
-//                Intent showSharesActivity = new Intent(getContext(), TflTestActivity.class);
-//                showSharesActivity.putExtra("name", lineStatus.getTitle());
-//                showSharesActivity.putExtra("shares", lineStatus.getShares());
-//                getContext().startActivity(showSharesActivity);
-//            }
-//        });
-
+        tubeLineStatus.setBackgroundColor(0x894e24);
 
         return convertView;
     }
