@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:id="@+id/tubeLineList">
+
+    <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName1"
+                android:padding="1dip"
+                android:text="Test 1"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus1"
+                android:paddingLeft="5dip"
+                android:text="Status 1"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+
+    <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName2"
+                android:padding="1dip"
+                android:text="Test 2"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus2"
+                android:paddingLeft="5dip"
+                android:text="Status 2"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+
+    <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName3"
+                android:padding="1dip"
+                android:text="Test 3"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus3"
+                android:paddingLeft="5dip"
+                android:text="Status 3"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName4"
+                android:padding="1dip"
+                android:text="Test 4"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus4"
+                android:paddingLeft="5dip"
+                android:text="Status 4"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName5"
+                android:padding="1dip"
+                android:text="Test 5"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus5"
+                android:paddingLeft="5dip"
+                android:text="Status 5"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName6"
+                android:padding="1dip"
+                android:text="Test 6"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus6"
+                android:paddingLeft="5dip"
+                android:text="Status 6"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName7"
+                android:padding="1dip"
+                android:text="Test 7"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus7"
+                android:paddingLeft="5dip"
+                android:text="Status 7"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName8"
+                android:padding="1dip"
+                android:text="Test 8"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus8"
+                android:paddingLeft="5dip"
+                android:text="Status 8"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName9"
+                android:padding="1dip"
+                android:text="Test 9"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus9"
+                android:paddingLeft="5dip"
+                android:text="Status 9"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName10"
+                android:padding="1dip"
+                android:text="Test 10"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus10"
+                android:paddingLeft="5dip"
+                android:text="Status 10"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName11"
+                android:padding="1dip"
+                android:text="Test 11"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus11"
+                android:paddingLeft="5dip"
+                android:text="Status 11"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName12"
+                android:padding="1dip"
+                android:text="Test 12"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus12"
+                android:paddingLeft="5dip"
+                android:text="Status 12"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+            android:id="@+id/tableRow13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+        <TextView
+                android:id="@+id/lineName13"
+                android:padding="1dip"
+                android:text="Test 13"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+                android:id="@+id/lineStatus13"
+                android:paddingLeft="5dip"
+                android:text="Status 13"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+</TableLayout>

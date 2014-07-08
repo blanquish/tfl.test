@@ -4,8 +4,11 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import com.example.tfl_test.model.ArrayOfLineStatus;
+import com.example.tfl_test.model.LineStatus;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -21,11 +24,11 @@ public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
     private static final String TFL_LINE_STATUS_URL = "http://cloud.tfl.gov.uk/TrackerNet/LineStatus";
 
     private TflTestActivity tflTestActivity;
-    private ListView listView;
+    private TableLayout tableLayout;
 
-    public TflLoadLineStatusTask(TflTestActivity tflTestActivity, ListView listView) {
+    public TflLoadLineStatusTask(TflTestActivity tflTestActivity, TableLayout tableLayout) {
         this.tflTestActivity = tflTestActivity;
-        this.listView = listView;
+        this.tableLayout = tableLayout;
     }
 
     @Override
@@ -82,9 +85,24 @@ public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
             try {
 
                 Serializer serializer = new Persister();
-                ArrayOfLineStatus lineStatus = serializer.read(ArrayOfLineStatus.class, tflXML);
+                ArrayOfLineStatus lineStatusList = serializer.read(ArrayOfLineStatus.class, tflXML);
 
-                listView.setAdapter(new TubeLineStatusAdapter(tflTestActivity, android.R.layout.simple_list_item_1, lineStatus.getLineStatusList()));
+                int counter = 0;
+                for (LineStatus lineStatus : lineStatusList.getLineStatusList()) {
+                    Log.d("VIEW LINE STATUS", "Counter: " + counter);
+                    String name = lineStatus.getLine().getName();
+                    String status = lineStatus.getStatus().getDescription();
+
+                    TableRow currentRow = (TableRow)tableLayout.getChildAt(counter);
+                    TextView tubeLineName = (TextView)currentRow.getVirtualChildAt(0);
+                    tubeLineName.setText(name);
+                    tubeLineName.setBackgroundColor(TflLineColours.getColourForLineName(name));
+
+                    TextView tubeLineStatus = (TextView)currentRow.getVirtualChildAt(1);
+                    tubeLineStatus.setText(status);
+                    counter++;
+
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -133,7 +151,7 @@ public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line).append("\n");
             }
 
             return sb.toString().trim();
