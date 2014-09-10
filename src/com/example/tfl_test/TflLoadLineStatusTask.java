@@ -19,6 +19,14 @@ import org.simpleframework.xml.core.Persister;
 
 import java.io.*;
 
+/**
+ * This asynchrounous task will fire an http request to TFL's api
+ * and parse data received as XML.
+ *
+ * Then it will display the
+ * information on the phone screen using each underground line
+ * corresponding colour.
+ */
 public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
 
     private static final String TFL_LINE_STATUS_URL = "http://cloud.tfl.gov.uk/TrackerNet/LineStatus";
@@ -31,11 +39,12 @@ public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
         this.tableLayout = tableLayout;
     }
 
+    /*
+    Make call to retrieve data
+     */
     @Override
     protected String doInBackground(String[] objects) {
-
             return readTubeLineInfoFromHttpRequest();
-//            return readTubeLineFromFile(tflTestActivity.getResources());
 
     }
 
@@ -46,6 +55,7 @@ public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
         request.setHeader("User-Agent", "set your desired User-Agent");
         InputStream inputStream = null;
 
+        // Attempt getting the data, otherwise log exception and exit
         try {
             HttpResponse response = client.execute(request);
 
@@ -56,37 +66,47 @@ public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
 
             HttpEntity entity = response.getEntity();
 
+            // Woho! got data, return parsed input stream, because
+            // otherwise we will get a ConcurrentModificationException
+            // when reading the input stream from onPostExecuteMethod (as it is
+            // executed on a different thread)
             if (entity != null) {
                 inputStream = entity.getContent();
                 return convertStreamToString(inputStream);
             }
 
         }  catch (IOException e) {
-            Log.d("error", e.getLocalizedMessage());
+            Log.d("error", e.getLocalizedMessage()); // error is printed in log, not shown in the application
         } finally {
             try {
                 if (inputStream != null) inputStream.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.d("error", e.getLocalizedMessage());
             }
         }
 
         return null;
     }
 
+    /*
+    This will be executed after the background task has completed, it updates the user
+    interface to display results.
+     */
     @Override
     protected void onPostExecute(String tflXML) {
 
         if (tflXML != null && !tflXML.isEmpty()) {
 
-            // big hack to get rid of first weird character
+            // workaround to get rid of first character
             tflXML = tflXML.substring(tflXML.indexOf("<"));
 
             try {
 
+                // Read the xml contained in the string, serialise to a list of lines
                 Serializer serializer = new Persister();
                 ArrayOfLineStatus lineStatusList = serializer.read(ArrayOfLineStatus.class, tflXML);
 
+                // Display pretty table with tube line and status, with corresponding colour
                 int counter = 0;
                 for (LineStatus lineStatus : lineStatusList.getLineStatusList()) {
                     Log.d("VIEW LINE STATUS", "Counter: " + counter);
@@ -105,43 +125,15 @@ public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.d("error", e.getLocalizedMessage());
             }
         }
     }
 
-    private String readTubeLineFromFile(Resources resources) {
-        AssetManager assetManager = resources.getAssets();
-        InputStream inputStream = null;
-
-        try {
-            inputStream = assetManager.open("LineStatus3.xml");
-            Log.d("READ", "It worked!");
-
-            ByteArrayOutputStream content = new ByteArrayOutputStream();
-            int readBytes;
-            byte[] sBuffer = new byte[512];
-            while ((readBytes = inputStream.read(sBuffer)) != -1) {
-                content.write(sBuffer, 0, readBytes);
-            }
-
-            return new String(content.toByteArray());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return null;
-    }
-
+    /*
+     * Reads stream passed and appends to a String, if any exception is thrown
+     * returns a null string.
+     */
     private String convertStreamToString(InputStream is) {
         BufferedReader reader;
         try {
@@ -156,14 +148,14 @@ public class TflLoadLineStatusTask extends AsyncTask<String, String, String> {
 
             return sb.toString().trim();
         } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
+            Log.d("error", e1.getLocalizedMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("error", e.getLocalizedMessage());
         } finally {
             try {
                 is.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.d("error", e.getLocalizedMessage());
             }
         }
         return null;

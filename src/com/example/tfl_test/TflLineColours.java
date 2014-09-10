@@ -2,6 +2,10 @@ package com.example.tfl_test;
 
 import android.graphics.Color;
 
+/**
+ * Enum that encapsulates the names of London Underground lines
+ * together with the colour that corresponds to each one of them.
+ */
 public enum TflLineColours {
 
     BAKERLOO (1, "Bakerloo", "#894e24"),

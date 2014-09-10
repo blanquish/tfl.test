@@ -5,6 +5,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TableLayout;
 
+/**
+ * Entry point for the application:
+ *  1) creates the layout that will be used to display the data on the phone
+ * 2) creates an instance of the task that will retrieve the data we need.
+ */
 public class TflTestActivity extends Activity {
 
     private TableLayout tableLayout;
